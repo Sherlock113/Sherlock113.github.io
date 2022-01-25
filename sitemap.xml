@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://localhost:1313/tags/apache-pulsar/</loc>
+    <lastmod>2022-01-25T20:12:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/categories/blog/</loc>
+    <lastmod>2022-01-25T20:12:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/categories/</loc>
+    <lastmod>2022-01-25T20:12:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://localhost:1313/post/pulsar-on-kubesphere/</loc>
     <lastmod>2022-01-25T20:12:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -16,6 +37,20 @@
   </url>
   
   <url>
+    <loc>http://localhost:1313/tags/installation/</loc>
+    <lastmod>2022-01-25T20:12:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/tags/kubesphere/</loc>
+    <lastmod>2022-01-25T20:12:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://localhost:1313/post/</loc>
     <lastmod>2022-01-25T20:12:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -23,13 +58,8 @@
   </url>
   
   <url>
-    <loc>http://localhost:1313/categories/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2022-01-25T20:12:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

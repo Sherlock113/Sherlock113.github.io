@@ -16,9 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Sherlock Xu" /><meta name="description" content="KubeSphere, an open-source container platform running on Kubernetes, provides users with an app-centric experience. Apache Pulsar, a cloud-native, distributed messaging and streaming platform In this article, I will demonstrate how to install Apache Pulsar on a KubeSphere cluster.
-Before you begin To install Pulsar on KubeSphere, you need to do the following beforehand:
- Create a Kubernetes cluster with KubeSphere installed. You can deploy both Kubernetes and KubeSphere using KubeKey on public cloud instances or in an air-gapped environment." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="Sherlock Xu" /><meta name="description" content="KubeSphere, an open-source container platform running on Kubernetes, provides users with an app-centric experience. In this connection, it features a comprehensive set of tools for developers to manage apps across their entire lifecycle. In this article, I will demonstrate how to install Apache Pulsar on a KubeSphere cluster as an example. Apache Pulsar, a cloud-native, distributed messaging and streaming tool, represents a go-to platform to meet real-time event-streaming needs of enterprises." /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -42,25 +40,19 @@ Before you begin To install Pulsar on KubeSphere, you need to do the following b
 
 
 <meta property="og:title" content="Deploying Apache Pulsar on Kubesphere" />
-<meta property="og:description" content="KubeSphere, an open-source container platform running on Kubernetes, provides users with an app-centric experience. Apache Pulsar, a cloud-native, distributed messaging and streaming platform In this article, I will demonstrate how to install Apache Pulsar on a KubeSphere cluster.
-Before you begin To install Pulsar on KubeSphere, you need to do the following beforehand:
- Create a Kubernetes cluster with KubeSphere installed. You can deploy both Kubernetes and KubeSphere using KubeKey on public cloud instances or in an air-gapped environment." />
+<meta property="og:description" content="KubeSphere, an open-source container platform running on Kubernetes, provides users with an app-centric experience. In this connection, it features a comprehensive set of tools for developers to manage apps across their entire lifecycle. In this article, I will demonstrate how to install Apache Pulsar on a KubeSphere cluster as an example. Apache Pulsar, a cloud-native, distributed messaging and streaming tool, represents a go-to platform to meet real-time event-streaming needs of enterprises." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://localhost:1313/post/pulsar-on-kubesphere/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-01-25T20:12:37+08:00" />
 <meta property="article:modified_time" content="2022-01-25T20:12:37+08:00" />
 
 <meta itemprop="name" content="Deploying Apache Pulsar on Kubesphere">
-<meta itemprop="description" content="KubeSphere, an open-source container platform running on Kubernetes, provides users with an app-centric experience. Apache Pulsar, a cloud-native, distributed messaging and streaming platform In this article, I will demonstrate how to install Apache Pulsar on a KubeSphere cluster.
-Before you begin To install Pulsar on KubeSphere, you need to do the following beforehand:
- Create a Kubernetes cluster with KubeSphere installed. You can deploy both Kubernetes and KubeSphere using KubeKey on public cloud instances or in an air-gapped environment."><meta itemprop="datePublished" content="2022-01-25T20:12:37+08:00" />
+<meta itemprop="description" content="KubeSphere, an open-source container platform running on Kubernetes, provides users with an app-centric experience. In this connection, it features a comprehensive set of tools for developers to manage apps across their entire lifecycle. In this article, I will demonstrate how to install Apache Pulsar on a KubeSphere cluster as an example. Apache Pulsar, a cloud-native, distributed messaging and streaming tool, represents a go-to platform to meet real-time event-streaming needs of enterprises."><meta itemprop="datePublished" content="2022-01-25T20:12:37+08:00" />
 <meta itemprop="dateModified" content="2022-01-25T20:12:37+08:00" />
-<meta itemprop="wordCount" content="1455">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta itemprop="wordCount" content="1387">
+<meta itemprop="keywords" content="KubeSphere,Apache Pulsar,installation," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Deploying Apache Pulsar on Kubesphere"/>
-<meta name="twitter:description" content="KubeSphere, an open-source container platform running on Kubernetes, provides users with an app-centric experience. Apache Pulsar, a cloud-native, distributed messaging and streaming platform In this article, I will demonstrate how to install Apache Pulsar on a KubeSphere cluster.
-Before you begin To install Pulsar on KubeSphere, you need to do the following beforehand:
- Create a Kubernetes cluster with KubeSphere installed. You can deploy both Kubernetes and KubeSphere using KubeKey on public cloud instances or in an air-gapped environment."/>
+<meta name="twitter:description" content="KubeSphere, an open-source container platform running on Kubernetes, provides users with an app-centric experience. In this connection, it features a comprehensive set of tools for developers to manage apps across their entire lifecycle. In this article, I will demonstrate how to install Apache Pulsar on a KubeSphere cluster as an example. Apache Pulsar, a cloud-native, distributed messaging and streaming tool, represents a go-to platform to meet real-time event-streaming needs of enterprises."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -137,7 +129,9 @@ Before you begin To install Pulsar on KubeSphere, you need to do the following b
 
       <div class="post-meta">
         <span class="post-time"> 2022-01-25 </span>
-        
+        <div class="post-category">
+            <a href="/categories/blog/"> Blog </a>
+            </div>
         
       </div>
     </header>
@@ -153,7 +147,8 @@ Before you begin To install Pulsar on KubeSphere, you need to do the following b
         <li><a href="#installing-pulsar-as-an-app-template-on-kubesphere">Installing Pulsar as an app template on KubeSphere</a></li>
         <li><a href="#using-pulsar-admin-to-create-pulsar-tenants-namespaces-and-topics">Using pulsar-admin to create Pulsar tenants, namespaces and topics</a></li>
         <li><a href="#accessing-pulsar-manager">Accessing Pulsar Manager</a></li>
-        <li><a href="#accessing-the-grafana-dashboard">Accessing the Grafana dashboard</a></li>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#reference">Reference</a></li>
       </ul>
     </li>
   </ul>
@@ -161,18 +156,17 @@ Before you begin To install Pulsar on KubeSphere, you need to do the following b
   </div>
 </div>
     <div class="post-content">
-      <p>KubeSphere, an open-source container platform running on Kubernetes, provides users with an app-centric experience. Apache Pulsar, a cloud-native, distributed messaging and streaming platform
-In this article, I will demonstrate how to install Apache Pulsar on a KubeSphere cluster.</p>
+      <p><a href="https://kubesphere.io/">KubeSphere</a>, an open-source container platform running on Kubernetes, provides users with an app-centric experience. In this connection, it features a comprehensive set of tools for developers to manage apps across their entire lifecycle. In this article, I will demonstrate how to install <a href="https://pulsar.apache.org/">Apache Pulsar</a> on a KubeSphere cluster as an example. Apache Pulsar, a cloud-native, distributed messaging and streaming tool, represents a go-to platform to meet real-time event-streaming needs of enterprises.</p>
 <h2 id="before-you-begin">Before you begin</h2>
 <p>To install Pulsar on KubeSphere, you need to do the following beforehand:</p>
 <ul>
-<li>Create a Kubernetes cluster with KubeSphere installed. You can deploy both Kubernetes and KubeSphere using <a href="https://github.com/kubesphere/kubekey">KubeKey</a> on <a href="https://kubesphere.io/docs/installing-on-linux/introduction/multioverview/">public cloud instances</a> or in <a href="https://kubesphere.io/docs/installing-on-linux/introduction/air-gapped-installation/">an air-gapped environment</a>. KubeKey represents a lightweight, brand-new Kubernetes installer. It installs Helm 3.0+ on your Kubernetes cluster by default, which is also a must for Apache Pulsar. Alternatively, use a managed Kubernetes service such as <a href="https://kubesphere.io/docs/installing-on-kubernetes/hosted-kubernetes/install-kubesphere-on-gke/">Google Kubernetes Engine (GKE)</a> or <a href="https://kubesphere.io/docs/installing-on-kubernetes/hosted-kubernetes/install-kubesphere-on-aks/">Azure Kubernetes Service (AKS)</a> to create a Kubernetes cluster, and then install KubeSphere with <a href="https://github.com/kubesphere/ks-installer">ks-installer</a>. In a production environment, it is recommended that you choose the second option because managed services can free you from additional settings (for example, persistent storage and load balancers) as you deploy workloads.</li>
-<li><a href="https://kubesphere.io/docs/pluggable-components/app-store/">Enable the KubeSphere App Store</a>. As you can notice from the Pulsar documentation, it can be installed on a Kubernetes cluster through <a href="https://pulsar.apache.org/docs/en/kubernetes-helm/#step-1-install-pulsar-helm-chart">its Helm chart</a>. The KubeSphere App Store allows you to add a Helm repository and install apps in it on KubeSphere as <a href="https://kubesphere.io/docs/project-user-guide/application/app-template/">app templates</a> on the KubeSphere console. The App Store is powered by <a href="https://github.com/openpitrix/openpitrix">OpenPitrix</a>, an open-source web-based system to package, deploy and manage different types of apps across their entire lifecycle.</li>
+<li>Create a Kubernetes cluster with KubeSphere installed. You can deploy both Kubernetes and KubeSphere using <a href="https://github.com/kubesphere/kubekey">KubeKey</a> on <a href="https://kubesphere.io/docs/installing-on-linux/introduction/multioverview/">public cloud instances</a> or in <a href="https://kubesphere.io/docs/installing-on-linux/introduction/air-gapped-installation/">an air-gapped environment</a>. KubeKey is a lightweight, brand-new Kubernetes installer. It installs Helm 3.0+ on your Kubernetes cluster by default, which is also a must for Apache Pulsar. Alternatively, use a managed Kubernetes service such as <a href="https://kubesphere.io/docs/installing-on-kubernetes/hosted-kubernetes/install-kubesphere-on-gke/">Google Kubernetes Engine (GKE)</a> or <a href="https://kubesphere.io/docs/installing-on-kubernetes/hosted-kubernetes/install-kubesphere-on-aks/">Azure Kubernetes Service (AKS)</a> to create a Kubernetes cluster, and then install KubeSphere with <a href="https://github.com/kubesphere/ks-installer">ks-installer</a>. In production, it is recommended that you choose the second option because managed services can free you from additional settings (for example, persistent storage and load balancers) as you deploy workloads.</li>
+<li><a href="https://kubesphere.io/docs/pluggable-components/app-store/">Enable the KubeSphere App Store</a>. As you can notice from the Pulsar documentation, it can be installed on a Kubernetes cluster through <a href="https://pulsar.apache.org/docs/en/kubernetes-helm/#step-1-install-pulsar-helm-chart">its Helm chart</a>. The KubeSphere App Store allows you to add a Helm repository and install apps in it on KubeSphere as <a href="https://kubesphere.io/docs/project-user-guide/application/app-template/">app templates</a> on the KubeSphere console. The KubeSphere App Store is powered by <a href="https://github.com/openpitrix/openpitrix">OpenPitrix</a>, an open-source web-based system to package, deploy and manage different types of apps across their entire lifecycle.</li>
 </ul>
 <div class="admonition note"><p class="admonition-title">Notes</p>
    For more information, make sure your environment meets the prerequisites for both <a href="https://kubesphere.io/docs/reference/environment-requirements/">KubeSphere</a> and <a href="https://pulsar.apache.org/docs/en/kubernetes-helm/#prerequisite">Apache Pulsar</a>. 
 </div>
-<p>In my environment, I created a Kubernetes cluster through Google Kubernetes Engine. The following table lists the machines in my cluster for your reference. Feel free to configure your cluster based on your own needs.</p>
+<p>In my environment, I created a Kubernetes cluster through <a href="https://cloud.google.com/kubernetes-engine/">Google Kubernetes Engine</a>. The following table lists the machines in my cluster for your reference. Feel free to configure your cluster based on your own needs.</p>
 <table>
 <thead>
 <tr>
@@ -200,9 +194,9 @@ In this article, I will demonstrate how to install Apache Pulsar on a KubeSphere
 </tbody>
 </table>
 <h2 id="installing-pulsar-as-an-app-template-on-kubesphere">Installing Pulsar as an app template on KubeSphere</h2>
-<p>KubeSphere boasts a highly interactive and responsive user interface where tenants with different roles can perform the corresponding actions directly. That said, admin users can run commands with kubectl in its web-based terminal as always. For demonstration purposes, I used the built-in account admin through the entire steps.</p>
+<p>KubeSphere boasts a highly interactive and responsive user interface where tenants with different roles can perform corresponding actions directly. That said, admin users can run commands with <code>kubectl</code> in its web-based terminal as always. For demonstration purposes, I used the built-in account <code>admin</code> throughout the entire steps.</p>
 <div class="admonition note"><p class="admonition-title">Notes</p>
-   In fact, with the multi-tenant system of KubeSphere, you can easily set accounts and assign roles to them without manually creating RBAC-related resources like Role and RoleBinding objects. With them in place, it is the responsibility of each user to do their own job in a cluster, such as adding an app repository and deploying an app. Check out <a href="https://kubesphere.io/docs/quick-start/create-workspace-and-project/">this quickstart article</a> in the KubeSphere documentation to learn more. 
+   In fact, with the multi-tenant system of KubeSphere, you can easily set accounts and assign roles to them without manually creating RBAC-related resources like <code>Role</code> and <code>RoleBinding</code> objects. With them in place, it is the responsibility of each user to do their own job in a cluster, such as adding an app repository and deploying an app. Check out <a href="https://kubesphere.io/docs/quick-start/create-workspace-and-project/">this quickstart article</a> in the KubeSphere documentation to learn more. 
 </div>
 <p>Now, let’s get started with our journey.</p>
 <ol>
@@ -212,7 +206,7 @@ In this article, I will demonstrate how to install Apache Pulsar on a KubeSphere
 <p><img src="/img/log-in-to-ks-console.png" alt="log-in-to-ks-console"></p>
 </li>
 <li>
-<p>Go to <strong>Access Control</strong> in <strong>Platform</strong>. This is the place where you manage all workspaces, accounts, and platform roles. To manage Pulsar resources in a unified way, <a href="https://kubesphere.io/docs/quick-start/create-workspace-and-project/#step-2-create-a-workspace">create a workspace</a> first. As you can see from the image below, there is a workspace called <code>pulsar</code> in my current cluster.</p>
+<p>Go to <strong>Access Control</strong> in <strong>Platform</strong>. This is the place where you manage all workspaces, accounts, and platform roles. To manage Pulsar resources in a unified way, <a href="https://kubesphere.io/docs/quick-start/create-workspace-and-project/#step-2-create-a-workspace">create a workspace</a> first. As you can see from the image below, there is a workspace called <code>pulsar</code> in my cluster.</p>
 <p><img src="/img/pulsar-workspace.png" alt="pulsar-workspace"></p>
 </li>
 <li>
@@ -251,62 +245,96 @@ cd pulsar-helm-chart
 <p><img src="/img/pulsar-project.png" alt="pulsar-project"></p>
 </li>
 <li>
-<p>Go to <strong>Apps</strong> under <strong>Application Workloads</strong>. Click <strong>Create</strong> on the <strong>Template-Based Apps</strong> tab and <strong>select From App Template</strong>.</p>
+<p>Go to <strong>Apps</strong> under <strong>Application Workloads</strong>. Click <strong>Create</strong> on the <strong>Template-Based Apps</strong> tab and select <strong>From App Template</strong>.</p>
+<p><img src="/img/from-app-templates.png" alt="from-app-templates"></p>
 </li>
 <li>
 <p>Switch to the <code>apache</code> repository that stores the Pulsar Helm chart.</p>
+<p><img src="/img/pulsar-repository.png" alt="pulsar-repository"></p>
 </li>
 <li>
 <p>Click <strong>Pulsar</strong>. On the <strong>Chart Files</strong> tab, we can view the configuration from the console directly. From the drop-down menu on the right, we can also see the available versions.</p>
+<p><img src="/img/pulsar-value-file.png" alt="pulsar-value-file"></p>
 </li>
 <li>
-<p>Click <strong>Install</strong>. Confirm the app name, version and project (namely, namespace) where Pulsar will be deployed. Click <strong>Next</strong> to continue.</p>
+<p>Click <strong>Install</strong>. On the <strong>Basic Information</strong> page, confirm the app name, version and project (namely, namespace) where Pulsar will be deployed. Click <strong>Next</strong> to continue.</p>
+<p><img src="/img/basic-info.png" alt="basic-info"></p>
 </li>
 <li>
-<p>Edit the values.yaml file in this step. When you are done, click <strong>Install</strong>. Remember that you need to set the value of <code>initialize</code> to <code>true</code> when installing Pulsar the first time. This command installs and starts Apache Pulsar.</p>
+<p>Edit the <code>values.yaml</code> file in this step. When you are done, click <strong>Install</strong>.</p>
+<p><img src="/img/change-value-file.png" alt="change-value-file"></p>
+<p>Keep in mind that you need to set the value of <code>initialize</code> to <code>true</code> when installing Pulsar the first time. This command installs and starts Pulsar.</p>
 </li>
 <li>
 <p>Wait for Pulsar to be up and running. Switch between <strong>Services</strong>, <strong>Workloads</strong>, <strong>Jobs</strong>, and <strong>Pods</strong> to check all resources are ready.</p>
+<p><img src="/img/services.png" alt="services"></p>
+<p><img src="/img/deployments.png" alt="deployments"></p>
+<p><img src="/img/jobs.png" alt="jobs"></p>
+<p><img src="/img/Pods.png" alt="Pods"></p>
 </li>
 </ol>
 <h2 id="using-pulsar-admin-to-create-pulsar-tenants-namespaces-and-topics">Using pulsar-admin to create Pulsar tenants, namespaces and topics</h2>
 <p><code>pulsar-admin</code> is the command-line interface (CLI) tool for Pulsar. You can perform the following steps to create resources with <code>pulsar-admin</code>.</p>
 <ol>
-<li>Navigate to the <code>toolset</code> Pod and click the Terminal icon on its detail page.</li>
-<li>A terminal will appear, where we can run commands in the container of the Pod directly. Create a tenant named apache and list all the tenants.</li>
-<li>In the toolset container, create a namespace named pulsar for the tenant <code>apache</code> and list the namespaces of the tenant <code>apache</code> to see if the namespace is created successfully. You should see a similar output as below. The namespace <code>apache/pulsar</code> has been successfully created.</li>
+<li>
+<p>Navigate to the <code>toolset</code> Pod and click <img src="/img/terminal.png" height="10px" width="12px">  on its detail page to access its container.</p>
+<p><img src="/img/toolset.png" alt="toolset"></p>
+</li>
+<li>
+<p>A terminal will appear, where we can run commands in the container of the Pod directly. Create a tenant named <code>apache</code> and list all the tenants.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">bin/pulsar-admin tenants create apache
+bin/pulsar-admin tenants list
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>In the <code>toolset</code> container, create a namespace named <code>pulsar</code> for the tenant <code>apache</code> and list the namespaces of the tenant <code>apache</code> to see if the namespace is created successfully.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">bin/pulsar-admin namespaces create apache/pulsar
+bin/pulsar-admin namespaces list apache
+</code></pre></td></tr></table>
+</div>
+</div><p>Expected output:</p>
+<p><img src="/img/run-commands-in-container.png" alt="run-commands-in-container"></p>
+</li>
 </ol>
 <h2 id="accessing-pulsar-manager">Accessing Pulsar Manager</h2>
 <p>Pulsar Manager is a web-based visualized tool for managing and monitoring Pulsar. We can follow the steps below to access it.</p>
 <ol>
 <li>
 <p>Navigate to the <code>pulsar-manager</code> Service and go to its detail page. By default, the Pulsar Manager Pod is controlled by a Deployment (<code>pulsar-mini-pulsar-manager</code> in my example), exposed by a Service via <code>LoadBalancer</code> as shown below.</p>
+<p><img src="/img/pulsar-manager.png" alt="pulsar-manager"></p>
 </li>
 <li>
 <p>If you are using a managed Kubernetes service, the provider will assign a public IP address to it. Access Pulsar Manager using the IP address (<code>35.239.73.28</code>) and the Service port (<code>9527</code>).</p>
+<p><img src="/img/access-pulsar-manager.png" alt="access-pulsar-manager"></p>
 <p>If no available public IP address is assigned for the <code>LoadBalancer</code> Service (this may happen if your cluster is created on cloud instances directly without load balancers or in a private environment), access Pulsar Manager using a node IP address and the node port. However, you may need to configure relevant firewall rules or port forwarding rules depending on your environment.</p>
 </li>
 <li>
-<p>Use the username pulsar and password pulsar to log in to Pulsar Manager.</p>
+<p>Use the username (<code>pulsar</code>) and password (<code>pulsar</code>) to log in to Pulsar Manager.</p>
+<p><img src="/img/pulsar-UI.png" alt="pulsar-UI"></p>
 </li>
 <li>
 <p>Create an environment as needed.</p>
+<p><img src="/img/pulsar-env.png" alt="pulsar-env"></p>
 </li>
 </ol>
-<h2 id="accessing-the-grafana-dashboard">Accessing the Grafana dashboard</h2>
-<p>Grafana is an open-source visualization tool providing powerful observability features. You can create dashboards to monitor different components of Apache Pulsar.</p>
-<ol>
-<li>
-<p>Navigate to the <code>grafana</code> Service and go to its detail page. By default, the Grafana Pod is controlled by a Deployment (<code>pulsar-mini-grafana</code> in my example), exposed by a Service via <code>LoadBalancer</code> as shown below.</p>
-</li>
-<li>
-<p>If you are using a managed Kubernetes service, the provider will assign a public IP address to it. Access Grafana using the IP address (<code>35.202.16.175</code>) and the Service port (<code>3000</code>).</p>
-<p>If no available public IP address is assigned for the <code>LoadBalancer</code> Service (this may happen if your cluster is created on cloud instances directly without load balancers or in a private environment), access Grafana using a node IP address and the node port. However, you may need to configure relevant firewall rules or port forwarding rules depending on your environment.</p>
-</li>
-<li>
-<p>Use the username <code>pulsar</code> and password <code>pulsar</code> to log in to the Grafana Dashboard.</p>
-</li>
-</ol>
+<h2 id="summary">Summary</h2>
+<p>Both Apache Pulsar and KubeSphere have much to offer for enterprise users and open-source enthusiasts. What I have covered in this article only serves as a quickstart for someone who wants to get a glimpse of them. Check out their latest documentation to understand more.</p>
+<h2 id="reference">Reference</h2>
+<p><a href="https://pulsar.apache.org/docs/en/kubernetes-helm/">Apache Pulsar documentation</a></p>
+<p><a href="https://kubesphere.io/docs/">KubeSphere documentation</a></p>
 
     </div>
 
@@ -326,7 +354,11 @@ cd pulsar-helm-chart
   
 </div>
 <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="/tags/kubesphere/">KubeSphere</a>
+          <a href="/tags/apache-pulsar/">Apache Pulsar</a>
+          <a href="/tags/installation/">installation</a>
+          </div>
       <nav class="post-nav">
         
         
