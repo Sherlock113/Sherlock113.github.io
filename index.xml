@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Even - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Even - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 25 Jan 2022 20:12:37 +0800</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pulsar on Kubesphere</title>
+      <link>http://localhost:1313/post/pulsar-on-kubesphere/</link>
+      <pubDate>Tue, 25 Jan 2022 20:12:37 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/pulsar-on-kubesphere/</guid>
+      <description>Deploying Apache Pulsar on KubeSphere Before you begin To install Pulsar on KubeSphere, you need to do the following:
+ Create a Kubernetes cluster with KubeSphere installed. You can deploy both Kubernetes and KubeSphere using KubeKey on public cloud instances or in an air-gapped environment. KubeKey represents a lightweight, brand-new Kubernetes installer. It installs Helm 3.0+ on your Kubernetes cluster by default, which is also a must for Apache Pulsar. Alternatively, use a managed Kubernetes service such as Google Kubernetes Engine (GKE) or Azure Kubernetes Service (AKS) to create a Kubernetes cluster, and then install KubeSphere with ks-installer.</description>
+    </item>
+    
+  </channel>
+</rss>
